@@ -706,7 +706,7 @@ async def upload(bot: Client, m: Message):
             f"""<blockquote> **📗 {fancy_batch_name}**</blockquote>"""
             
         )
-        await bot.pin_chat_message(m.chat.id, name_message.id)
+        if m.chat.type != "private":     await bot.pin_chat_message(m.chat.id, name_message.id) else:     # Handle private chat case - maybe just send a message instead     await m.reply("Pinning not available in private chats")
         
         # Wait for 2 seconds before proceeding
         await asyncio.sleep(2)
